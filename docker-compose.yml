@@ -1,0 +1,51 @@
+version: "3.8"
+services:
+#  api:
+#    image: node:16
+#    container_name: qs_api
+#    networks:
+#      - qs_network
+#    ports:
+#      - '8980:3000'
+#    volumes:
+#      - .:/srv:rw
+#    working_dir: /srv
+#    command: ['npm', 'run', 'serve']
+
+  db:
+    image: mongo:5
+    container_name: qs_db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_DATABASE=quickstart
+    ports:
+      - '27017:27017'
+    networks:
+      - qs_network
+    volumes:
+      - qs_data:/data/db
+      - ./docker/mongo/setup.sh:/setup.sh:rw
+  mongo-express:
+    container_name: qs_me
+    image: mongo-express:0.54
+    depends_on:
+      - db
+    networks:
+      - qs_network
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=qs_db
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=pass
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=pass
+    ports:
+      - '6082:8081'
+#    volumes:
+#      - qs_data:/data/db
+
+networks:
+  qs_network:
+volumes:
+  qs_data:
