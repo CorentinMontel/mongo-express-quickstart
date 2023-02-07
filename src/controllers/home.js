@@ -1,6 +1,6 @@
 import Kitten from "../models/kitten";
 import {ApiResponder} from "../services/http";
-import logger from "../services/logger";
+import {appLogger} from "../services/logger";
 
 export default {
     /**
@@ -12,8 +12,8 @@ export default {
         const silence = new Kitten({ name: 'Silence' });
         await silence.save()
 
-        logger.info("Someone requested home controller")
+        appLogger.info("Someone requested home controller")
 
-        new ApiResponder(res).sendNotFound()
+        new ApiResponder(res).sendOk({message: "It's really ok bruh"})
     }
 }
