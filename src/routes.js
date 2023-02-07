@@ -1,4 +1,5 @@
 import Home from "./controllers/home";
+import Kitten from "./controllers/kitten";
 
 /**
  * @param {Express} app
@@ -6,4 +7,5 @@ import Home from "./controllers/home";
  */
 export default function Routes(app) {
     app.get('/', Home.home)
+    app.get('/kittens/:name', Kitten.kittenItem)
 }

@@ -3,6 +3,12 @@
 ## Purpose
 Simple ExpressJS/MongoDB quickstart.
 
+### What's inside ?
+- ExpressJS integration
+- MongoDB through Mongoose ODM
+- Logging with Winston
+- JWT authentication
+
 ## Setup
 Clone this repository then go into project folder.
 
