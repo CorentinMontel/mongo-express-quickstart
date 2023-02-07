@@ -1,5 +1,17 @@
+# Sources
 node_modules
+
+# IDE
 .idea
 .vscode
-config.js
+
+# Configurations files and secrets
+config/config.js
+config/secret
+
+# Logs
+var/log
+
+# Build directory
 build
+!build/.gitkeep

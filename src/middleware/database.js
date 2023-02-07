@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import config from "../../config";
+import config from "../../config/config";
 
 export default function (app) {
     app.use(async (req, res, next) => {
