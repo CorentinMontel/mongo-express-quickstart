@@ -6,6 +6,8 @@ import Kitten from "./controllers/kitten";
  * @constructor
  */
 export default function Routes(app) {
-    app.get('/', Home.home)
-    app.get('/kittens/:name', Kitten.kittenItem)
+    app.get('/', ...Home.home)
+    app.get('/kittens/:name', ...Kitten.kittenItem)
+    app.get('/kittens', ...Kitten.kittenCollection)
+    app.post('/kittens', ...Kitten.kittenCollection)
 }
