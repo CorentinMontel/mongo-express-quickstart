@@ -15,3 +15,7 @@ var/log
 # Build directory
 build
 !build/.gitkeep
+
+# Env files
+.env.*.local
+.env.local

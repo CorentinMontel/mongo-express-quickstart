@@ -1,9 +1,11 @@
 import winston from "winston";
-import config from "../../config/config";
 import * as path from "path";
+require('dotenv-flow').config({
+    node_env: 'development'
+});
 
 const logger = winston.createLogger({
-    level: config.LOG_LEVEL,
+    level: process.env.LOG_LEVEL,
     defaultMeta: { service: 'app' },
     transports: [
         new winston.transports.File({ filename: `${__dirname}${path.sep}..${path.sep}..${path.sep}var${path.sep}log${path.sep}app.log`}),
