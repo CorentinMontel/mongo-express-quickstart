@@ -1,12 +1,11 @@
 import {ApiResponder} from "../services/http";
 import KittenRepository from "../repository/kitten-repository";
-import {body} from "express-validator";
+import Kitten, {kittenValidators} from "../models/kitten";
 
 export default {
     kittenItem: [
         async (req, res) => {
             const kitten = await KittenRepository.findByName(req.params.name)
-            console.log(kitten)
 
             new ApiResponder(res).sendOk(kitten)
         }
@@ -20,10 +19,12 @@ export default {
     ],
 
     createKitten: [
-        body('name').not().isEmpty(),
-        body('name').isLength({min: 3, max: 255}),
+        ...kittenValidators,
         async (req, res) => {
+            const kitten = new Kitten({name: req.body.name})
+            await kitten.save()
 
+            new ApiResponder(res).sendCreated(kitten)
         }
     ]
 }

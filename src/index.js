@@ -15,6 +15,10 @@ ConfigureMiddleware(app)
 // Configure routes
 Routes(app)
 
-app.listen(port, () => {
-    console.log(`App listening on port ${port}`)
+const server = app.listen(port, () => {
+    if ("test" !== process.env.NODE_ENV) {
+        console.log(`App listening on port ${port}`)
+    }
 })
+
+export default server
