@@ -1,4 +1,5 @@
 import {body} from "express-validator";
+import express from "express";
 
 const mongoose = require('mongoose');
 

@@ -30,5 +30,8 @@
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
     "nodemon": "^2.0.20"
+  },
+  "jest": {
+    "globalSetup": "./tests/setup.js"
   }
 }

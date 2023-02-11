@@ -1,6 +1,7 @@
 import {ApiResponder} from "../services/http";
 import KittenRepository from "../repository/kitten-repository";
 import Kitten, {kittenValidators} from "../models/kitten";
+import {validationResult} from "express-validator";
 
 export default {
     kittenItem: [
@@ -21,10 +22,30 @@ export default {
     createKitten: [
         ...kittenValidators,
         async (req, res) => {
+            // validate form
+            const err = validationResult(req);
+            if (!err.isEmpty()) {
+                return new ApiResponder(res).sendBadRequest(err.mapped())
+            }
+
+            // Create kitten if valid
             const kitten = new Kitten({name: req.body.name})
             await kitten.save()
 
             new ApiResponder(res).sendCreated(kitten)
+        }
+    ],
+
+    updateKitten: [
+        ...kittenValidators,
+        async (req, res) => {
+            new ApiResponder(res).sendOk()
+        }
+    ],
+
+    deleteKitten: [
+        async (req, res) => {
+            new ApiResponder(res).sendOk()
         }
     ]
 }

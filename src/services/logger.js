@@ -1,9 +1,7 @@
 import winston from "winston";
 import * as path from "path";
 
-require('dotenv-flow').config({
-    node_env: 'development'
-});
+process.env.DATABASE_URL || require('dotenv-flow').config();
 
 const logger = winston.createLogger({
     level: process.env.LOG_LEVEL,

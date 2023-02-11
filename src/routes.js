@@ -7,7 +7,11 @@ import Kitten from "./controllers/kitten";
  */
 export default function Routes(app) {
     app.get('/', ...Home.home)
-    app.get('/kittens/:name', ...Kitten.kittenItem)
+
+    // Kittens routes
     app.get('/kittens', ...Kitten.kittenCollection)
-    app.post('/kittens', ...Kitten.kittenCollection)
+    app.get('/kittens/:name', ...Kitten.kittenItem)
+    app.post('/kittens', ...Kitten.createKitten)
+    app.patch('/kittens/:id', ...Kitten.updateKitten)
+    app.delete('/kittens/:id', ...Kitten.deleteKitten)
 }
